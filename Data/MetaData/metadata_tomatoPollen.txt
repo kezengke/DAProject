@@ -1,0 +1,11 @@
+ID	condition
+C1.sm.bam	control
+C2.sm.bam	control
+C3.sm.bam	control
+C4.sm.bam	control
+C5.sm.bam	control
+T1.sm.bam	testing
+T2.sm.bam	testing
+T3.sm.bam	testing
+T4.sm.bam	testing
+T5.sm.bam	testing
