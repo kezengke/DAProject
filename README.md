@@ -14,8 +14,8 @@ Comprehensive differential analysis pipeline for biological data including RDP, 
 
 ### Pipeline Options
 
-- **Full Pipeline** (`./run_pipeline.sh`): Processes all 4 datasets (RDP, dada2, WGS, RNAseq)
-- **Fast Pipeline** (`./run_pipeline_no_rnaseq.sh`): Processes 3 datasets (RDP, dada2, WGS) - much faster for testing
+- **Full Pipeline** (`./run_pipeline.sh`): Processes all 4 types of datasets (RDP, dada2, WGS, RNAseq)
+- **Fast Pipeline** (`./run_pipeline_no_rnaseq.sh`): Processes 3 types datasets (RDP, dada2, WGS) - much faster for testing
 
 ## Project Structure
 
