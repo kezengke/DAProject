@@ -60,20 +60,6 @@ processEdgeRRes <- function(edger_results) {
   return(edger_results)
 }
 
-#' Function to assign directions to log10 pvalues of edgeR
-processALDEx2Res <- function(aldex2_results) {
-  #creating log10 pvalues for edgeR results
-  aldex2_results$direction<-aldex2_results$stats/abs(aldex2_results$stats)
-  #log10 pvals
-  aldex2_results$logP<-log10(aldex2_results$pval)
-  #pval with direction
-  aldex2_results$p_directed<-aldex2_results$direction*aldex2_results$logP
-  aldex2_results$p_directed<-aldex2_results$p_directed*-1
-
-  return(aldex2_results)
-}
-
-
 #' Function to plot Log10 p-values
 Log10PvPPlot <- function(results1, results2, method1, method2, title = "Default title") {
   # Plotting log10 p-values with directions based on p-value significance by which algorithm
@@ -100,8 +86,6 @@ Log10PvPPlot <- function(results1, results2, method1, method2, title = "Default 
                     "Wilcoxon" = "#c8892b",
                     "DESeq2" = "#ebd374",
                     "edgeR" = "#94c6d4",
-                    "ALDEx2t-test" = "#5d879e",
-                    "ALDEx2Wilcoxon" = "#4863aa",
                     "Both" = "#a24c97",
                     "Neither" = "#cdda73",
 
@@ -122,33 +106,6 @@ Log10PvPPlot <- function(results1, results2, method1, method2, title = "Default 
     ggtitle(title) +
     xlab(paste0("log10(", method1, " p-value)")) +
     ylab(paste0("log10(", method2, " p-value)"))
-
-  return(p)
-}
-
-#' Function to plot taxa correlation histograms
-TaxaCorHistogram <- function(table, title = "Default title", plotCol) {
-  spearCor<-cor(t(table), method = "spearman")
-  corVal<-spearCor[lower.tri(spearCor, diag = F)]
-
-  p<-ggplot(data = data.frame(corVal), aes(x = corVal)) +
-    geom_histogram(binwidth = 0.05, fill = plotCol, color = "black", alpha = 0.7) +
-    labs(x = "Spearman Correlation",
-         y = "Frequency",
-         title = title) +
-    theme_minimal()
-
-  return(p)
-}
-
-#' Function to plot p-value histograms
-PvalHistogram <- function(table, histoCol, title = "Default title") {
-  p<-ggplot(data = table, aes(x = pval)) +
-    geom_histogram(binwidth = 0.05, fill = histoCol, color = "black", alpha = 0.7) +
-    labs(x = "p-value",
-         y = "Frequency",
-         title = title) +
-    theme_minimal()
 
   return(p)
 }

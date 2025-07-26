@@ -1,36 +1,63 @@
 # Differential Analysis Project
 
-This project contains R scripts for performing differential analysis on various types of biological data including:
-- RDP (Ribosomal Database Project)
-- DADA2 (Divisive Amplicon Denoising Algorithm)
-- WGS (Whole Genome Sequencing)
-- RNA-seq (RNA Sequencing)
+Comprehensive differential analysis pipeline for biological data including RDP, DADA2, WGS, and RNA-seq datasets.
+
+## Quick Start
+
+```bash
+# Run the complete manuscript figure generation pipeline
+./run_pipeline.sh
+```
 
 ## Project Structure
 
 ```
 DAProject/
 ├── Data/
-│   ├── CountsTable/      # Contains normalized and raw count data
-│   └── MetaData/         # Contains metadata files
-├── Plots/                # Output directory for generated plots
-├── Results/              # Output directory for analysis results
-└── Scripts/             # R scripts for analysis
-    ├── CalculationTools.R    # Common functions and utilities
-    ├── Log10PvPPlots.R      # Plotting functions
-    ├── PlotTools.R          # Additional plotting utilities
-    ├── TtestCalculation.R   # T-test analysis
-    ├── WilcoxonCalculation.R # Wilcoxon test analysis
-    ├── DESeq2Calculation.R   # DESeq2 differential expression analysis
-    └── edgeRCalculation.R    # edgeR differential expression analysis
+│   ├── CountsTable/      # Raw and normalized count data
+│   └── MetaData/         # Metadata files
+├── Plots/                # Generated plots
+├── Results/              # Analysis results
+└── Scripts/             # Analysis scripts
+    ├── CalculationTools.R    # Common functions
+    ├── PlotTools.R          # Plotting utilities
+    ├── *Calculation.R       # Statistical test scripts
+    ├── Shuffle*Calculation.R # Shuffling analysis scripts
+    └── NB*Calculation.R     # NB resampling scripts
 ```
 
 ## Analysis Methods
 
-The project implements multiple statistical methods for differential analysis:
-1. T-test
-2. Wilcoxon test
-3. DESeq2
-4. edgeR
+### Statistical Tests
+- **T-test** - Parametric comparison
+- **Wilcoxon** - Non-parametric comparison  
+- **DESeq2** - Differential expression
+- **edgeR** - Differential expression
 
-Each analysis method is implemented in its own script, with common functions sourced from `CalculationTools.R`. 
+### Shuffling Analysis
+- **Sample Tags** - Random sample reassignment
+- **Counts in Sample** - Within-sample shuffling
+- **Counts in Taxon** - Within-taxon shuffling
+- **Counts Table** - Complete table shuffling
+
+### NB Resampling
+- **Whole Taxon Resampling** - Negative binomial resampling
+- **Combined with Shuffling** - Applied to resampled data
+
+## Pipeline Steps
+
+1. **Statistical Tests** - T-test, Wilcoxon, DESeq2, edgeR
+2. **Log10 P-value Plots** - Method comparisons
+3. **Shuffle Analysis** - Robustness assessment
+4. **NB Resample Analysis** - Distribution simulation
+5. **Verification** - Output validation
+
+## Output Files
+
+### Results
+- `Results/PkgResults/[dataset]/[method]/[file]_[method].txt`
+
+### Plots
+- `Plots/[dataset]/Log10PvPPlots([file]).png`
+- `Plots/[dataset]/FractionOfSignificantResults([dataset]).png`
+- `Plots/[dataset]/NBResampleWholeTaxonShuffledFractionOfSignificantResults([dataset]).png`

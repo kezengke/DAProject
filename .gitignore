@@ -49,4 +49,8 @@ vignettes/*.pdf
 # Results and temporary data files
 Results/*
 *.log
-*.tmp 
+*.tmp
+
+# Data directory
+Data/
+Data/* 

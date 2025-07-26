@@ -27,9 +27,6 @@ datasets <- list(
   ),
   list(
     name = "RNAseq",
-    input_dir = "Data/CountsTable/RNAseqNorm",
-    results_dir = "Results/PkgResults/RNAseq",
-    plot_dir = "Plots/RNAseq"
   )
 )
 

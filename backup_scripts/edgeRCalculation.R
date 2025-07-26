@@ -1,4 +1,4 @@
-# Calculating t-test results
+# Calculating edgeR results
 rm(list = ls())
 source("Scripts/CalculationTools.R")
 
@@ -21,16 +21,16 @@ process_single_file <- function(file, output_dir, dataset_name) {
     rownames(meta) <- colnames(countsT)
     colnames(meta) <- "conditions"
     
-    results <- calcTtest(countsT, meta)
+    results <- calcEdgeR(countsT, meta)
     
     # Create output directory if it doesn't exist
-    output_path <- file.path(output_dir, dataset_name, "ttest")
+    output_path <- file.path(output_dir, dataset_name, "edgeR")
     if (!dir.exists(output_path)) dir.create(output_path, recursive = TRUE)
     
     # Write results
     write.table(results, 
                 file.path(output_path,
-                         paste0(gsub(basename(file), pattern=".txt$", replacement=""), "_t.txt")),
+                         paste0(gsub(basename(file), pattern=".txt$", replacement=""), "_edgeR.txt")),
                 sep = "\t", row.names = T)
     
     list(status = "success", file = basename(file))
@@ -63,19 +63,17 @@ processDataset <- function(input_dir, output_dir, dataset_name) {
 
 # Define dataset configurations
 datasets <- list(
-  list(input_dir = "Data/CountsTable/RDPNorm", 
+  list(input_dir = "Data/CountsTable/RDPRaw", 
        output_dir = "Results/PkgResults",
        name = "RDP"),
-  list(input_dir = "Data/CountsTable/dada2Norm",
+  list(input_dir = "Data/CountsTable/dada2Raw",
        output_dir = "Results/PkgResults",
        name = "dada2"),
-  list(input_dir = "Data/CountsTable/WGSNorm",
+  list(input_dir = "Data/CountsTable/WGSRaw",
        output_dir = "Results/PkgResults",
        name = "WGS"),
-  list(input_dir = "Data/CountsTable/RNAseqNorm", 
        output_dir = "Results/PkgResults",
        name = "RNAseq")
-
 )
 
 # Process all datasets

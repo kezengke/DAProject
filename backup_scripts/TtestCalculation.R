@@ -72,10 +72,8 @@ datasets <- list(
   list(input_dir = "Data/CountsTable/WGSNorm",
        output_dir = "Results/PkgResults",
        name = "WGS"),
-  list(input_dir = "Data/CountsTable/RNAseqNorm", 
        output_dir = "Results/PkgResults",
        name = "RNAseq")
-
 )
 
 # Process all datasets

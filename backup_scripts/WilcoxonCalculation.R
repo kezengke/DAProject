@@ -1,4 +1,4 @@
-# Calculating t-test results
+# Calculating wilcoxon results
 rm(list = ls())
 source("Scripts/CalculationTools.R")
 
@@ -21,16 +21,16 @@ process_single_file <- function(file, output_dir, dataset_name) {
     rownames(meta) <- colnames(countsT)
     colnames(meta) <- "conditions"
     
-    results <- calcTtest(countsT, meta)
+    results <- calcWilcox(countsT, meta)
     
     # Create output directory if it doesn't exist
-    output_path <- file.path(output_dir, dataset_name, "ttest")
+    output_path <- file.path(output_dir, dataset_name, "Wilcoxon")
     if (!dir.exists(output_path)) dir.create(output_path, recursive = TRUE)
     
     # Write results
     write.table(results, 
                 file.path(output_path,
-                         paste0(gsub(basename(file), pattern=".txt$", replacement=""), "_t.txt")),
+                         paste0(gsub(basename(file), pattern=".txt$", replacement=""), "_wilcox.txt")),
                 sep = "\t", row.names = T)
     
     list(status = "success", file = basename(file))
@@ -72,10 +72,8 @@ datasets <- list(
   list(input_dir = "Data/CountsTable/WGSNorm",
        output_dir = "Results/PkgResults",
        name = "WGS"),
-  list(input_dir = "Data/CountsTable/RNAseqNorm", 
        output_dir = "Results/PkgResults",
        name = "RNAseq")
-
 )
 
 # Process all datasets
