@@ -94,7 +94,7 @@ processDataset <- function(dataset_name) {
 datasets <- list(
   list(name = "RDP"),
   list(name = "dada2"),
-  list(name = "WGS"),
+  list(name = "WGS")
 )
 
 # Process all datasets

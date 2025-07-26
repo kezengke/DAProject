@@ -71,9 +71,7 @@ datasets <- list(
        name = "dada2"),
   list(input_dir = "Data/CountsTable/WGSNorm",
        output_dir = "Results/PkgResults",
-       name = "WGS"),
-       output_dir = "Results/PkgResults",
-       name = "RNAseq")
+       name = "WGS")
 )
 
 # Process all datasets

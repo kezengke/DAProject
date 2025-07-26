@@ -5,9 +5,17 @@ Comprehensive differential analysis pipeline for biological data including RDP, 
 ## Quick Start
 
 ```bash
-# Run the complete manuscript figure generation pipeline
+# Run the complete manuscript figure generation pipeline (all datasets)
 ./run_pipeline.sh
+
+# Run the pipeline without RNAseq datasets (faster for testing)
+./run_pipeline_no_rnaseq.sh
 ```
+
+### Pipeline Options
+
+- **Full Pipeline** (`./run_pipeline.sh`): Processes all 4 datasets (RDP, dada2, WGS, RNAseq)
+- **Fast Pipeline** (`./run_pipeline_no_rnaseq.sh`): Processes 3 datasets (RDP, dada2, WGS) - much faster for testing
 
 ## Project Structure
 

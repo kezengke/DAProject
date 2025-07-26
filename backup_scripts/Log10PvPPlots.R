@@ -24,9 +24,6 @@ datasets <- list(
     input_dir = "Data/CountsTable/WGSRaw",
     results_dir = "Results/PkgResults/WGS",
     plot_dir = "Plots/WGS"
-  ),
-  list(
-    name = "RNAseq",
   )
 )
 
